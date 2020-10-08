@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Todo List</title>
+{% endblock %}
+
+{% block body %}
+<div class ="Content">
+    <h1>TODO</h1>
+    <br>
+    <form action ="/" method="POST">
+        <input type="text" name="content" id="content">
+        <input type="submit" id="Add" value="Add">
+    </form>
+    <br><br>
+    {% if Notes|length < 1 %}
+        <h1>List is Empty ( Add items )</h1>
+    {% else %}
+        <table style="border-collapse: separate;border-spacing:0 10px;width: 100%; height: 100%; text-align: center;;">
+            <tr>
+                <th>Item</th>
+                <th>Added</th>
+                <th>Actions</th>
+            </tr>
+        {% for Note in Notes %}
+            <tr>
+                <td style="width:70%; text-align: center;">{{ Note.content }}</td>
+                <td>{{ Note.date_created.date() }}</td>
+                <td>
+                    <a href="/delete/{{Note.id}}"><button onclick="this.disable = true">Delete</button></a>
+                    <a href="/update/{{Note.id}}"><button onclick="this.disabled = true">update</button> </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+        {% endif %}
+</div>
+{% endblock %}

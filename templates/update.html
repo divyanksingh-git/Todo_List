@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>TODO</title>
+{% endblock %}
+
+{% block body %}
+<div class ="Content">
+    <h1>Update Item</h1>
+    <form action ="/update/{{Note.id}}" method="POST">
+        <input type="text" name="content" id="content" value="{{Note.content}}">
+        <input type="submit" value="Update">
+    </form>
+</div>
+{% endblock %}
